@@ -13,9 +13,9 @@ public class DB_Utility {
 
 
     public static void createConnection() {
-        String connectionStr = "jdbc:oracle:thin:@54.211.214.241:1521:XE";
-        String username = "hr";
-        String password = "hr";
+        String connectionStr = ConfigurationReader.getProperty("connStr");
+        String username = ConfigurationReader.getProperty("username");
+        String password = ConfigurationReader.getProperty("password");
 
         try {
             connection = DriverManager.getConnection(connectionStr, username, password);
@@ -24,7 +24,14 @@ public class DB_Utility {
             System.out.println("!!! CONNECTION HAS FAILED !!!!" + e.getMessage());
         }
     }
-
+    public static void createConnection(String connectionStr, String username, String password) {
+        try {
+            connection = DriverManager.getConnection(connectionStr, username, password);
+            System.out.println("!!!CONNECTION SUCEESS!!!");
+        } catch (SQLException e) {
+            System.out.println("!!! CONNECTION HAS FAILED !!!!" + e.getMessage());
+        }
+    }
 
     public static ResultSet runQuery(String query) {
         try {
