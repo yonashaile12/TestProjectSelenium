@@ -32,11 +32,24 @@ public class DB_Utility {
         return rs;
     }
 
+    public static void destroy(){
+        try {
+            rs.close();
+            stmnt.close();
+            connection.close();
+            System.out.println("CLOSING CONNECTION!!");
+        } catch (SQLException e) {
+            System.out.println("ERROR WHILE CLOSING CONNECTION "+e.getMessage());
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         createConnection();
         ResultSet rs = runQuery("SELECT * FROM REGIONS");
         rs.next();
         System.out.println(rs.getString(2));
     }
+
+
 
 }
