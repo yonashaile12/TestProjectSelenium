@@ -261,8 +261,6 @@ public class DB_Utility {
                 rowMapList.add(   getRowMap(rowNum));
 
             }
-
-
         return rowMapList;
         }
 
